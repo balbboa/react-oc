@@ -4,6 +4,7 @@ import ErrorPage from "./pages/Error/error";
 import Historico from "./pages/Historico/Historico";
 import Home from "./pages/Home/Home";
 import Login from "./pages/Login/Login";
+import Perfil from "./pages/Perfil/Perfil";
 
 const PrivateRoute = ({ children, redirectTo }: any) => {
   const isAuthenticated = localStorage.getItem("token") !== null;
@@ -42,6 +43,20 @@ const router = createBrowserRouter([
       {
         path: "/historico/",
         element: <Historico />,
+      },
+    ],
+  },
+  {
+    path: "/perfil",
+    element:
+      <PrivateRoute redirectTo="/">
+        <Menu />
+      </PrivateRoute>,
+    errorElement: <ErrorPage />,
+    children: [
+      {
+        path: "/perfil/",
+        element: <Perfil />,
       },
     ],
   },
